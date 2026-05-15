@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-05-15T18:09:35.992Z",
+    "end": "2026-05-15T18:09:36.325Z",
+    "duration": 333,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e7ade3d4-f07c-4987-8264-70b4a83de887",
+      "title": "",
+      "fullFile": "cypress\\e2e\\api\\api-health-check.cy.js",
+      "file": "cypress\\e2e\\api\\api-health-check.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "bca8d092-ca9b-4c53-b185-6caaab4b8474",
+          "title": "API Health Check",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return status 200",
+              "fullTitle": "API Health Check should return status 200",
+              "timedOut": null,
+              "duration": 212,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: 'https://jsonplaceholder.typicode.com/posts'\n}).then(response => {\n  expect(response.status).to.equal(200);\n});",
+              "err": {},
+              "uuid": "26c0a341-3b46-4948-86dc-71f0132bd1dd",
+              "parentUUID": "bca8d092-ca9b-4c53-b185-6caaab4b8474",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "26c0a341-3b46-4948-86dc-71f0132bd1dd"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 212,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

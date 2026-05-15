@@ -1,0 +1,182 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-05-15T18:05:46.385Z",
+    "end": "2026-05-15T18:05:47.172Z",
+    "duration": 787,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "6a6702ff-2d48-48d7-95a9-d7c3de9d58b7",
+      "title": "",
+      "fullFile": "cypress\\e2e\\api\\posts-api.cy.js",
+      "file": "cypress\\e2e\\api\\posts-api.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "985ba86d-675f-4566-a8b4-2848af811712",
+          "title": "API - JSONPlaceholder Posts",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve validar GET de um post existente",
+              "fullTitle": "API - JSONPlaceholder Posts Deve validar GET de um post existente",
+              "timedOut": null,
+              "duration": 75,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request(`${baseUrl}/posts/1`).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.have.property('id', 1);\n  expect(response.body).to.have.property('title');\n  expect(response.body).to.have.property('body');\n});",
+              "err": {},
+              "uuid": "e0db5a78-2b70-401d-9403-4d43638b89b0",
+              "parentUUID": "985ba86d-675f-4566-a8b4-2848af811712",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve validar criação de post com POST",
+              "fullTitle": "API - JSONPlaceholder Posts Deve validar criação de post com POST",
+              "timedOut": null,
+              "duration": 165,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('post').then(massa => {\n  cy.request({\n    method: 'POST',\n    url: `${baseUrl}/posts`,\n    body: massa\n  }).then(response => {\n    expect(response.status).to.eq(201);\n    expect(response.body).to.have.property('title', massa.title);\n    expect(response.body).to.have.property('userId', massa.userId);\n  });\n});",
+              "err": {},
+              "uuid": "745e63ba-4662-4db5-812f-1ca49491df5a",
+              "parentUUID": "985ba86d-675f-4566-a8b4-2848af811712",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve validar atualização de post com PUT",
+              "fullTitle": "API - JSONPlaceholder Posts Deve validar atualização de post com PUT",
+              "timedOut": null,
+              "duration": 159,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'PUT',\n  url: `${baseUrl}/posts/1`,\n  body: {\n    id: 1,\n    title: 'Post atualizado',\n    body: 'Conteúdo atualizado',\n    userId: 1\n  }\n}).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.have.property('title', 'Post atualizado');\n});",
+              "err": {},
+              "uuid": "6c9b1144-7dd3-45c8-b229-2f0f15273c4e",
+              "parentUUID": "985ba86d-675f-4566-a8b4-2848af811712",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve validar remoção de post com DELETE",
+              "fullTitle": "API - JSONPlaceholder Posts Deve validar remoção de post com DELETE",
+              "timedOut": null,
+              "duration": 143,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'DELETE',\n  url: `${baseUrl}/posts/1`\n}).then(response => {\n  expect(response.status).to.eq(200);\n});",
+              "err": {},
+              "uuid": "079343d3-a9f2-4ef2-b1c9-dea6cbe7adf8",
+              "parentUUID": "985ba86d-675f-4566-a8b4-2848af811712",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve validar criação de post com massa dinâmica",
+              "fullTitle": "API - JSONPlaceholder Posts Deve validar criação de post com massa dinâmica",
+              "timedOut": null,
+              "duration": 164,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const payload = {\n  title: _faker.faker.lorem.words(3),\n  body: _faker.faker.lorem.paragraph(),\n  userId: _faker.faker.number.int({\n    min: 1,\n    max: 10\n  })\n};\ncy.request({\n  method: 'POST',\n  url: `${baseUrl}/posts`,\n  body: payload\n}).then(response => {\n  expect(response.status).to.eq(201);\n  expect(response.body.title).to.eq(payload.title);\n  expect(response.body.userId).to.eq(payload.userId);\n});",
+              "err": {},
+              "uuid": "e30e559c-b367-4446-ba32-f487ec6c0348",
+              "parentUUID": "985ba86d-675f-4566-a8b4-2848af811712",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e0db5a78-2b70-401d-9403-4d43638b89b0",
+            "745e63ba-4662-4db5-812f-1ca49491df5a",
+            "6c9b1144-7dd3-45c8-b229-2f0f15273c4e",
+            "079343d3-a9f2-4ef2-b1c9-dea6cbe7adf8",
+            "e30e559c-b367-4446-ba32-f487ec6c0348"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 706,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

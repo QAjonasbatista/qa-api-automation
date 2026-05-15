@@ -1,6 +1,14 @@
+import { faker } from '@faker-js/faker'
+
 describe('API - JSONPlaceholder Posts', () => {
 
   const baseUrl = 'https://jsonplaceholder.typicode.com'
+
+  beforeEach(() => {
+
+    cy.log('Iniciando cenário de teste')
+
+  })
 
   it('Deve validar GET de um post existente', () => {
 
@@ -17,20 +25,20 @@ describe('API - JSONPlaceholder Posts', () => {
 
   it('Deve validar criação de post com POST', () => {
 
-    cy.request({
-      method: 'POST',
-      url: `${baseUrl}/posts`,
-      body: {
-        title: 'QA Automation',
-        body: 'Teste automatizado com Cypress',
-        userId: 1
-      }
+    cy.fixture('post').then((massa) => {
 
-    }).then((response) => {
+      cy.request({
+        method: 'POST',
+        url: `${baseUrl}/posts`,
+        body: massa
 
-      expect(response.status).to.eq(201)
-      expect(response.body).to.have.property('title', 'QA Automation')
-      expect(response.body).to.have.property('userId', 1)
+      }).then((response) => {
+
+        expect(response.status).to.eq(201)
+        expect(response.body).to.have.property('title', massa.title)
+        expect(response.body).to.have.property('userId', massa.userId)
+
+      })
 
     })
 
@@ -66,6 +74,29 @@ describe('API - JSONPlaceholder Posts', () => {
     }).then((response) => {
 
       expect(response.status).to.eq(200)
+
+    })
+
+  })
+
+  it('Deve validar criação de post com massa dinâmica', () => {
+
+    const payload = {
+      title: faker.lorem.words(3),
+      body: faker.lorem.paragraph(),
+      userId: faker.number.int({ min: 1, max: 10 })
+    }
+
+    cy.request({
+      method: 'POST',
+      url: `${baseUrl}/posts`,
+      body: payload
+
+    }).then((response) => {
+
+      expect(response.status).to.eq(201)
+      expect(response.body.title).to.eq(payload.title)
+      expect(response.body.userId).to.eq(payload.userId)
 
     })
 
