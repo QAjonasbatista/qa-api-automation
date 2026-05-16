@@ -1,8 +1,11 @@
 import { faker } from '@faker-js/faker'
+import Ajv from 'ajv'
+import postSchema from '../../schemas/postSchema.js'
 
 describe('API - JSONPlaceholder Posts', () => {
 
   const baseUrl = 'https://jsonplaceholder.typicode.com'
+  const ajv = new Ajv()
 
   beforeEach(() => {
 
@@ -12,72 +15,64 @@ describe('API - JSONPlaceholder Posts', () => {
 
   it('Deve validar GET de um post existente', () => {
 
-    cy.request(`${baseUrl}/posts/1`).then((response) => {
+      cy.getPost(1).then((response) => {
 
       expect(response.status).to.eq(200)
       expect(response.body).to.have.property('id', 1)
       expect(response.body).to.have.property('title')
       expect(response.body).to.have.property('body')
+      expect(response.duration).to.be.lessThan(5000)
+
+    const validate = ajv.compile(postSchema)
+    const valid = validate(response.body)
+
+    expect(valid).to.be.true
 
     })
 
   })
 
-  it('Deve validar criação de post com POST', () => {
+it('Deve validar criação de post com POST', () => {
 
-    cy.fixture('post').then((massa) => {
+  cy.fixture('post').then((massa) => {
 
-      cy.request({
-        method: 'POST',
-        url: `${baseUrl}/posts`,
-        body: massa
+    cy.createPost(massa).then((response) => {
 
-      }).then((response) => {
-
-        expect(response.status).to.eq(201)
-        expect(response.body).to.have.property('title', massa.title)
-        expect(response.body).to.have.property('userId', massa.userId)
-
-      })
+      expect(response.status).to.eq(201)
+      expect(response.body).to.have.property('title', massa.title)
+      expect(response.body).to.have.property('userId', massa.userId)
 
     })
 
   })
+
+})
 
   it('Deve validar atualização de post com PUT', () => {
 
-    cy.request({
-      method: 'PUT',
-      url: `${baseUrl}/posts/1`,
-      body: {
-        id: 1,
-        title: 'Post atualizado',
-        body: 'Conteúdo atualizado',
-        userId: 1
-      }
+  cy.fixture('post').then((massa) => {
 
-    }).then((response) => {
+    cy.updatePost(1, massa).then((response) => {
 
       expect(response.status).to.eq(200)
-      expect(response.body).to.have.property('title', 'Post atualizado')
+      expect(response.body).to.have.property('title', massa.title)
+      expect(response.body).to.have.property('userId', massa.userId)
 
     })
 
   })
 
-  it('Deve validar remoção de post com DELETE', () => {
+})
 
-    cy.request({
-      method: 'DELETE',
-      url: `${baseUrl}/posts/1`
+ it('Deve validar remoção de post com DELETE', () => {
 
-    }).then((response) => {
+  cy.deletePost(1).then((response) => {
 
-      expect(response.status).to.eq(200)
-
-    })
+    expect(response.status).to.eq(200)
 
   })
+
+})
 
   it('Deve validar criação de post com massa dinâmica', () => {
 

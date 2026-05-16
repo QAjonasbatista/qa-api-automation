@@ -1,0 +1,1 @@
+{"id":"87e5c45ba84ffe78ca5b73acec126dc7","fullName":"cypress/e2e/api/posts-negative.cy.js#API - JSONPlaceholder Posts - Cenários Negativos DELETE - Deve validar remoção de post inexistente","name":"DELETE - Deve validar remoção de post inexistente","status":"passed","testResultsByEnv":{"default":"cff22a2333e28d3663c2c1bdcbe491ee"}}

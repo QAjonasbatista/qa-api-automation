@@ -1,19 +1,23 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress')
+const { allureCypress } = require('allure-cypress/reporter')
 
 module.exports = defineConfig({
-  reporter: 'mochawesome',
-
-  reporterOptions: {
-    reportDir: 'cypress/reports/mochawesome-report',
-    overwrite: false,
-    html: true,
-    json: true,
-    timestamp: 'mmddyyyy_HHMMss'
-  },
 
   e2e: {
+
     setupNodeEvents(on, config) {
 
+      allureCypress(on, config, {
+        resultsDir: 'allure-results'
+      })
+
+      return config
     },
-  },
-});
+
+    env: {
+      baseUrlApi: 'https://jsonplaceholder.typicode.com'
+    }
+
+  }
+
+})

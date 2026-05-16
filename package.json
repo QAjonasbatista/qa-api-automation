@@ -2,10 +2,17 @@
   "scripts": {
     "test": "cypress run",
     "test:open": "cypress open",
-    "test:api": "cypress run --spec \"cypress/e2e/api/*.js\""
+    "test:api": "cypress run --spec \"cypress/e2e/api/*.js\"",
+    "test:allure": "cypress run",
+    "allure:generate": "allure generate allure-results --output allure-report",
+    "allure:open": "allure open ./allure-report",
+    "allure:report": "npm run allure:generate && npm run allure:open"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
+    "ajv": "^8.20.0",
+    "allure": "^3.8.2",
+    "allure-cypress": "^3.8.0",
     "cypress": "^15.15.0",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^5.1.1",

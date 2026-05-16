@@ -1,0 +1,25 @@
+const postSchema = {
+  type: 'object',
+
+  required: ['userId', 'id', 'title', 'body'],
+
+  properties: {
+    userId: {
+      type: 'number'
+    },
+
+    id: {
+      type: 'number'
+    },
+
+    title: {
+      type: 'string'
+    },
+
+    body: {
+      type: 'string'
+    }
+  }
+}
+
+export default postSchema

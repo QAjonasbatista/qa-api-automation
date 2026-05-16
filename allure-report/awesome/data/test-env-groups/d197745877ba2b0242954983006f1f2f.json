@@ -1,0 +1,1 @@
+{"id":"d197745877ba2b0242954983006f1f2f","fullName":"cypress/e2e/api/posts-negative.cy.js#API - JSONPlaceholder Posts - Cenários Negativos POST - Deve validar criação de post sem body","name":"POST - Deve validar criação de post sem body","status":"passed","testResultsByEnv":{"default":"1dd25a8fdd637f18339fc5965f3973d9"}}

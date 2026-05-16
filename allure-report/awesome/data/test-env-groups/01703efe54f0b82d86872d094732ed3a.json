@@ -1,0 +1,1 @@
+{"id":"01703efe54f0b82d86872d094732ed3a","fullName":"cypress/e2e/api/posts-negative.cy.js#API - JSONPlaceholder Posts - Cenários Negativos PUT - Deve validar atualização com ID inexistente","name":"PUT - Deve validar atualização com ID inexistente","status":"passed","testResultsByEnv":{"default":"9f5935589b35c05bd3980fe005ecb2cb"}}
